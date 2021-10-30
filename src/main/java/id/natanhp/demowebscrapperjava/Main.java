@@ -18,8 +18,10 @@ public class Main {
     public static void main(String[] args) {
         ArrayList<Product> products = new ArrayList<>();
 
+        int i = 1;
         do {
-            products.addAll(scrapProduct());
+            products.addAll(scrapProduct(i));
+            i++;
         } while (products.size() < 100);
 
         try {
@@ -41,10 +43,10 @@ public class Main {
         }
     }
 
-    private static ArrayList<Product> scrapProduct() {
+    private static ArrayList<Product> scrapProduct(int i) {
         ArrayList<Product> tempProducts = new ArrayList<>();
         try {
-            Document document = Jsoup.connect("https://www.tokopedia.com/search?navsource=home&page=2&q=handphone&source=universe&srp_component_id=02.02.02.01&st=product").get();
+            Document document = Jsoup.connect("https://www.tokopedia.com/search?navsource=home&page=" + i + "&q=handphone&source=universe&srp_component_id=02.02.02.01&st=product").get();
 
             Elements listOfProducts = document.getElementsByClass("pcv3__info-content css-1qnnuob");
 
